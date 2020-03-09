@@ -18,7 +18,6 @@ and each input size n should be output to the console when the program finishes 
 
 import statistics
 import time
-from time import sleep
 from random import randint
 
 
@@ -450,81 +449,6 @@ def main_testing_algorithm(array_to_sort):
 
 
 
-
-    """ -------------------- Chris Algorithm """
-
-
-
-
-    new_sorted_array = []
-    start_time = time.time()
-    #call the sorting algorithm
-
-
-    for number in array_to_sort:
-
-        if len(new_sorted_array) == 0:
-            #error handling, if new sorted list has no entries number is appended
-            new_sorted_array.append(number)
-            
-        elif number > new_sorted_array[-1]:
-            #where number is greater than last number of the new sorted list it is appended to the end
-            new_sorted_array.append(number)
-            
-        elif number < new_sorted_array[0]:
-            #where number is lower than first number of the sorted list it is inserted to the beginning
-            new_sorted_array.insert(0, number)
-
-        elif not number < new_sorted_array[0] and not number > new_sorted_array[-1]:
-            #where number is not lower than the number at beginning of the new sorted list ,
-            #and number not higher than number at end of new sorted list
-            #this code then utilizes a searh to find index of nearest lowest number
-
-            target = number
-
-            res = min(enumerate(new_sorted_array), key=lambda x: abs(target - x[1]))
-
-            res2 = res[0]
-            if res2 != 0: 
-                new_sorted_array.insert(res2, number)
-            elif res2 == 0:
-                new_sorted_array.insert(1, number)
-
-    end_time = time.time()
-    time_elapsed = end_time - start_time
-    time_elapsed = float(time_elapsed)
-
-    if testsize == 500:
-        chris500.append(time_elapsed)
-
-    elif testsize == 1000:
-        chris1000.append(time_elapsed)
-
-    elif testsize == 1250:
-        chris1250.append(time_elapsed)
-
-    elif testsize == 2500:
-        chris2500.append(time_elapsed)
-        
-    elif testsize == 3750:
-        chris3750.append(time_elapsed)
-        
-    elif testsize == 5000:
-        chris5000.append(time_elapsed)
-
-    elif testsize == 6250:
-        chris6250.append(time_elapsed)
-
-    elif testsize == 7500:
-        chris7500.append(time_elapsed)
-        
-    elif testsize == 8750:
-        chris8750.append(time_elapsed)
-        
-    elif testsize == 10000:
-        chris10000.append(time_elapsed)
-
-
     """ -------------------- Python Inbuilt Function"""
 
 
@@ -567,6 +491,86 @@ def main_testing_algorithm(array_to_sort):
         python10000.append(time_elapsed)
     
 
+
+
+    """ -------------------- Chris Algorithm """
+
+
+
+
+    new_sorted_array = []
+    start_time = time.time()
+    #call the sorting algorithm
+
+
+    for number in array_to_sort:
+
+        if len(new_sorted_array) == 0:
+            #error handling, if new sorted list has no entries number is appended
+            new_sorted_array.append(number)
+            
+        elif number > new_sorted_array[-1]:
+            #where number is greater than last number of the new sorted list it is appended to the end
+            new_sorted_array.append(number)
+            
+        elif number < new_sorted_array[0]:
+            #where number is lower than first number of the sorted list it is inserted to the beginning
+            new_sorted_array.insert(0, number)
+
+        elif not number < new_sorted_array[0] and not number > new_sorted_array[-1]:
+            #where number is not lower than the number at beginning of the new sorted list ,
+            #and number not higher than number at end of new sorted list
+            #this code then utilizes a searh to find index of nearest lowest number
+
+            target = number
+
+            res = min(enumerate(new_sorted_array), key=lambda x: abs(target - x[1]))
+
+            res2 = res[0]
+            if res2 != 0: 
+                new_sorted_array.insert(res2, number)
+            elif res2 == 0:
+                new_sorted_array.insert(1, number)
+
+        array_to_sort.remove(number)
+
+    end_time = time.time()
+    time_elapsed = end_time - start_time
+    time_elapsed = float(time_elapsed)
+
+    if testsize == 500:
+        chris500.append(time_elapsed)
+
+    elif testsize == 1000:
+        chris1000.append(time_elapsed)
+
+    elif testsize == 1250:
+        chris1250.append(time_elapsed)
+
+    elif testsize == 2500:
+        chris2500.append(time_elapsed)
+        
+    elif testsize == 3750:
+        chris3750.append(time_elapsed)
+        
+    elif testsize == 5000:
+        chris5000.append(time_elapsed)
+
+    elif testsize == 6250:
+        chris6250.append(time_elapsed)
+
+    elif testsize == 7500:
+        chris7500.append(time_elapsed)
+        
+    elif testsize == 8750:
+        chris8750.append(time_elapsed)
+        
+    elif testsize == 10000:
+        chris10000.append(time_elapsed)
+
+
+
+
 testsizes = [500,1000,1250,2500,3750,5000,6250,7500,8750,10000]
 
 
@@ -604,5 +608,8 @@ plt.ylabel("Running Time(Milliseconds)")
 
 
 plt.show()
+
+
+
 
 
